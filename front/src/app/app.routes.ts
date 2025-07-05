@@ -2,15 +2,20 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from '../app/public/home/home.component';
 import { AuthComponent } from '../app/auth/auth/auth.component';
 
+import { NecesitaLoguearse } from './auth/helper/permitir.acceso';
+import { NoNecesitaLoguearse } from './auth/helper/negar.acceso';
+
 export const routes: Routes = [
 
      {
-        path : '',
-        component : HomeComponent
+        path : 'inicio',
+        component : HomeComponent,
+        canActivate: [NecesitaLoguearse]
     },
      {
         path : 'auth',
-        component : AuthComponent
+        component : AuthComponent,
+        canActivate: [NoNecesitaLoguearse]
     },
     {
         path : 'usuarios',
@@ -18,6 +23,6 @@ export const routes: Routes = [
     },
     {
         path : '**',
-        redirectTo : ''
+        redirectTo : 'inicio'
     },
 ];

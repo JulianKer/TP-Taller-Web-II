@@ -1,13 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { SignupComponent } from '../app/auth/signup/signup.component';
-import { SigninComponent } from '../app/auth/signin/signin.component';
+import { FooterComponent } from './public/footer/footer.component';
+import { MenuComponent } from "./public/menu/menu.component";
+import { AuthService } from "./api/services/auth.service";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, FooterComponent, MenuComponent, CommonModule],
   templateUrl: './app.component.html'
 })
-export class AppComponent {}
+
+export class AppComponent {
+  public userService: AuthService = inject(AuthService);
+}

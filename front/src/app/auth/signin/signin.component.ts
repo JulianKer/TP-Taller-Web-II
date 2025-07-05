@@ -20,8 +20,8 @@ export class SigninComponent {
 
   login() {
     this.auth.signin(this.usuario).subscribe({
-      next: () => {
-        this.mensaje = 'Login correcto ✅';
+      next: (respuestaDelBack) => {
+        this.auth.setearLocalStorageConInfoDelUser(respuestaDelBack);
         this.router.navigate(['/inicio']);
     },
       error: err => this.mensaje = 'Error: ' + err.error.error
