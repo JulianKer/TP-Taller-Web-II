@@ -22,7 +22,12 @@ export const routes: Routes = [
         loadChildren : ()=>import('./modules/usuarios/usuarios/usuarios.routes').then(e => e.usuariosRoutes)
     },
     {
+        path: 'perfil',
+        loadChildren:()=> import('./modules/usuarios/perfil/perfil.routes').then(m => m.perfilRoutes)    
+    },
+    {
         path : '**',
         redirectTo : 'inicio'
     },
+    
 ];
