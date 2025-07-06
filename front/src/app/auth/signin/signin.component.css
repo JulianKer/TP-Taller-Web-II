@@ -1,0 +1,12 @@
+.msj-alerta-inicio-sesion{
+    animation: sube  0.4s forwards;
+}
+
+@keyframes sube{
+    0%{
+        transform: translateY(20px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
