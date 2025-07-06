@@ -2,30 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, signal, inject } from '@angular/core';
 import { CarritoItemActivoComponent } from '../carrito-item-activo/carrito-item-activo.component'; // ajustá ruta según tu proyecto
 import { Router } from '@angular/router';
-
-interface Producto {
-  id: number;
-  nombre: string;
-  descripcion: string;
-  clasificacion: string;
-  precio: number;
-}
-
-interface CarritoItem {
-  id: number;
-  producto: Producto;
-  cantidad: number;
-  precioUnitario: number;
-}
-
-interface Carrito {
-  id: number;
-  usuarioId: number;
-  creadoEn: Date;
-  estado: string;
-  total: number;
-  items: CarritoItem[];
-}
+import { Carrito } from '../../../api/models/carrito.model';
 
 @Component({
   selector: 'app-carrito-activo',
@@ -40,39 +17,30 @@ export class CarritoActivoComponent {
   private router = inject(Router);
   mostrarAcciones = signal(false);
 
-  carrito = signal<Carrito>({
-    id: 1,
-    usuarioId: 123,
-    creadoEn: new Date(),
-    estado: 'activo',
-    total: 0,
-    items: [
-      {
+carrito = signal<Carrito>({
+  id: 1,
+  usuarioId: 123,
+  creadoEn: new Date().toISOString(),  // string, no Date
+  estado: 'activo',
+  total: 0,
+  items: [
+    {
+      id: 1,
+      carritoId: 1,
+      productoId: 1,
+      cantidad: 2,
+      precioUnitario: 100,
+      producto: {
         id: 1,
-        producto: {
-          id: 1,
-          nombre: 'auto_ferrari.avif',
-          descripcion: 'Descripción A',
-          clasificacion: 'Clasificación A',
-          precio: 100
-        },
-        cantidad: 2,
-        precioUnitario: 0
-      },
-      {
-        id: 2,
-        producto: {
-          id: 2,
-          nombre: 'auto_haas.webp',
-          descripcion: 'Descripción B',
-          clasificacion: 'Clasificación B',
-          precio: 200
-        },
-        cantidad: 1,
-        precioUnitario: 200
+        nombre: 'auto_ferrari.avif',
+        descripcion: 'Descripción A',
+        clasificacion: 'Clasificación A',
+        precio: 100
       }
-    ]
-  });
+    }
+  ]
+});
+
 
   constructor() {
     this.actualizarTotal();
