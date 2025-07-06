@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal, inject } from '@angular/core';
 import { CarritoItemActivoComponent } from '../carrito-item-activo/carrito-item-activo.component'; // ajustá ruta según tu proyecto
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Carrito } from '../../../api/models/carrito.model';
 import { CarritoService } from '../../../api/services/carrito/carrito.service';
 
@@ -17,6 +17,7 @@ import { CarritoService } from '../../../api/services/carrito/carrito.service';
 export class CarritoActivoComponent {
   private carritoService = inject(CarritoService);
 
+  private route = inject(ActivatedRoute);
   private router = inject(Router);
   mostrarAcciones = signal(false);
 
@@ -54,9 +55,21 @@ export class CarritoActivoComponent {
 // });
 
 
-  constructor() {
-    this.cargarCarritoActivo();
+  ngOnInit(): void {
     this.mostrarAcciones.set(this.router.url === '/carrito');
+
+    if (this.mostrarAcciones()) {
+      this.cargarCarritoActivo();
+    } else {
+      this.route.params.subscribe(params => {
+        const carritoId = Number(params['id']); 
+        if (!isNaN(carritoId)) {
+          this.cargarDetallePedido(carritoId);
+        } else {
+          console.error('ID inválido');
+        }
+      });
+    }
   }
 
   private cargarCarritoActivo(): void {
@@ -67,6 +80,18 @@ export class CarritoActivoComponent {
       },
       error: (error) => {
         console.error('Error al obtener el carrito activo:', error);
+      }
+    });
+  }
+
+  private cargarDetallePedido(carritoId: number): void {
+    this.carritoService.obtenerDetallePedido(carritoId).subscribe({
+      next: (carrito) => {
+        this.carrito.set(carrito);
+        this.actualizarTotal(); 
+      },
+      error: (error) => {
+        console.error('Error al obtener el detalle del carrrito:', error);
       }
     });
   }

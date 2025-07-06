@@ -50,3 +50,28 @@ export async function obtenerCarritoActivo(usuarioId: number) {
 }
 
 
+export async function obtenerDetalleCarrito(userId: number, carritoId: number){
+
+  const detalleCarrito = await prisma.carrito.findFirst({
+    where: {
+      usuarioId: userId,
+      id : carritoId,
+      estado: { not: 'activo' }
+    },
+    include: {
+      items: {
+        include: {
+          producto: true
+        }
+      }
+    }
+  });
+
+  if (!detalleCarrito) {
+    throw new Error('No hay carritos activos para este usuario');
+  }
+
+  return JSON.parse(JSON.stringify(detalleCarrito));
+}
+
+

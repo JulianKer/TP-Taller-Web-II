@@ -26,7 +26,11 @@ export class CarritoService {
     return this.http.get<Carrito>(`${this.baseUrl}/obtenerCarritoActivo/${id}`);
   }
   
-
+  obtenerDetallePedido(carritoId: number): Observable<Carrito>{
+    const userId = localStorage.getItem('usuarioId')
+    console.log(userId)
+    return this.http.get<Carrito>(`${this.baseUrl}/obtenerDetallePedido/${userId}/${carritoId}`);
+  }
 
 
 
