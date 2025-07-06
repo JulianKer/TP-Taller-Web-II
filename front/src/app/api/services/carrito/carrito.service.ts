@@ -21,10 +21,17 @@ export class CarritoService {
       return this.http.get<Carrito[]>(`${this.baseUrl}/obtenerCarritosHistorico/${id}`);
   }
 
-  obtenerCarritoActivo(): Observable<any>{
-    return this.http.get<Carrito[]>(`${this.baseUrl}/obtenerCarritoActivo`);
+  obtenerCarritoActivo(): Observable<Carrito>{
+    const id = localStorage.getItem('usuarioId')
+    return this.http.get<Carrito>(`${this.baseUrl}/obtenerCarritoActivo/${id}`);
   }
   
+
+
+
+
+
+  // estos los usé para ir haciendo el front -----------------------
   obtenerCarritoActivoTEST(): Observable<any>{
     const carritosDePrueba = [
       { id: 1, fecha: '2025-07-01', total: 3500, cantidadDeItems: 4 },
@@ -42,4 +49,5 @@ export class CarritoService {
 
     return of(carritosDePrueba);
   }
+  //---------------------------------------------------------------------
 }

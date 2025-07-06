@@ -3,6 +3,7 @@ import { Component, signal, inject } from '@angular/core';
 import { CarritoItemActivoComponent } from '../carrito-item-activo/carrito-item-activo.component'; // ajustá ruta según tu proyecto
 import { Router } from '@angular/router';
 import { Carrito } from '../../../api/models/carrito.model';
+import { CarritoService } from '../../../api/services/carrito/carrito.service';
 
 @Component({
   selector: 'app-carrito-activo',
@@ -14,39 +15,61 @@ import { Carrito } from '../../../api/models/carrito.model';
 
 
 export class CarritoActivoComponent {
+  private carritoService = inject(CarritoService);
+
   private router = inject(Router);
   mostrarAcciones = signal(false);
 
-carrito = signal<Carrito>({
-  id: 1,
-  usuarioId: 123,
-  creadoEn: new Date().toISOString(),  // string, no Date
-  estado: 'activo',
-  total: 0,
-  items: [
-    {
-      id: 1,
-      carritoId: 1,
-      productoId: 1,
-      cantidad: 2,
-      precioUnitario: 100,
-      producto: {
-        id: 1,
-        nombre: 'auto_ferrari.avif',
-        descripcion: 'Descripción A',
-        clasificacion: 'Clasificación A',
-        precio: 100
-      }
-    }
-  ]
-});
+  carrito = signal<Carrito>({
+    id: 0,
+    usuarioId: 0,
+    creadoEn: '',
+    estado: '',
+    total: 0,
+    items: []
+  });
+
+// carrito = signal<Carrito>({
+//   id: 1,
+//   usuarioId: 123,
+//   creadoEn: new Date().toISOString(),  // string, no Date
+//   estado: 'activo',
+//   total: 0,
+//   items: [
+//     {
+//       id: 1,
+//       carritoId: 1,
+//       productoId: 1,
+//       cantidad: 2,
+//       precioUnitario: 100,
+//       producto: {
+//         id: 1,
+//         nombre: 'auto_ferrari.avif',
+//         descripcion: 'Descripción A',
+//         clasificacion: 'Clasificación A',
+//         precio: 100
+//       }
+//     }
+//   ]
+// });
 
 
   constructor() {
-    this.actualizarTotal();
+    this.cargarCarritoActivo();
     this.mostrarAcciones.set(this.router.url === '/carrito');
   }
 
+  private cargarCarritoActivo(): void {
+    this.carritoService.obtenerCarritoActivo().subscribe({
+      next: (carrito) => {
+        this.carrito.set(carrito);
+        this.actualizarTotal(); 
+      },
+      error: (error) => {
+        console.error('Error al obtener el carrito activo:', error);
+      }
+    });
+  }
 
   aumentarCantidad(index: number) {
     const carritoActual = this.carrito();
