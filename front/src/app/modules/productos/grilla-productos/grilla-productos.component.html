@@ -1,0 +1,28 @@
+@if (mensajeError) {
+ <p class="alert alert-danger">{{ mensajeError }}</p>
+}@else{
+
+ <div class="container py-4 grilla">
+      <div *ngIf="cargando(); else listaProductos">
+        <p>Cargando productos...</p>
+      </div>
+
+      <ng-template #listaProductos>
+        <div class="row g-4">
+          <div 
+            class="col-12 col-sm-6 col-md-4 col-lg-3 contenedor-grilla-card"
+            *ngFor="let producto of productos()">
+
+            <app-card-producto
+              [nombreImagen]="producto.nombre"
+              [descripcion]="producto.descripcion"
+              [clasificacion]="producto.clasificacion"
+              [precio]="producto.precio"
+              [id]="producto.id">
+            </app-card-producto>
+
+          </div>
+        </div>
+      </ng-template>
+    </div>
+}

@@ -22,6 +22,11 @@ export const routes: Routes = [
         loadChildren : ()=>import('./modules/usuarios/usuarios/usuarios.routes').then(e => e.usuariosRoutes)
     },
     {
+        path : 'productos',
+        loadChildren : ()=>import('./modules/productos/productos.routes').then(e => e.productosRoutes),
+        canActivate: [NecesitaLoguearse]
+    },
+    {
         path : '**',
         redirectTo : 'inicio'
     },
