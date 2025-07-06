@@ -14,11 +14,46 @@ datasource db {
 }
 
 model Usuario {
-  id        Int    @id @default(autoincrement())
-  email     String @unique
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
   password  String
   nombre    String
   apellido  String
   direccion String
+
+  carritos  Carrito[]
 }
+
+model Producto {
+  id              Int            @id @default(autoincrement())
+  nombre          String
+  descripcion     String
+  clasificacion   String
+  precio          Float
+
+  itemsEnCarrito  CarritoItem[]
+}
+
+model Carrito {
+  id         Int           @id @default(autoincrement())
+  usuarioId  Int
+  creadoEn   DateTime      @default(now())
+  estado     String        // Ej: "activo", "comprado", etc.
+  total      Float         @default(0)
+
+  usuario    Usuario       @relation(fields: [usuarioId], references: [id])
+  items      CarritoItem[]
+}
+
+model CarritoItem {
+  id             Int       @id @default(autoincrement())
+  carritoId      Int
+  productoId     Int
+  cantidad       Int       @default(1)
+  precioUnitario Float
+
+  carrito        Carrito   @relation(fields: [carritoId], references: [id])
+  producto       Producto  @relation(fields: [productoId], references: [id])
+}
+
 

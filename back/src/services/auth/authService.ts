@@ -1,19 +1,20 @@
 import { prisma } from '../../prismaClient';
+import { Usuario } from '@prisma/client';
 
-interface UsuarioInput {
-  email: string;
-  password: string;
-  nombre: string;
-  apellido: string;
-  direccion: string;
-}
+// interface UsuarioInput {
+//   email: string;
+//   password: string;
+//   nombre: string;
+//   apellido: string;
+//   direccion: string;
+// }
 
 const validarPassword = (pwd: string) => {
   const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
   return regex.test(pwd);
 };
 
-export async function registrarUsuario(data: UsuarioInput) {
+export async function registrarUsuario(data: Usuario) {
   if (!validarPassword(data.password)) {
     throw new Error('La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número');
   }
