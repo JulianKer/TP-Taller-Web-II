@@ -1,9 +1,11 @@
-<div class="card" (click)="verProducto(id)">
+<a class="card" [routerLink]="['/productos/detalle', id]">
   <img [src]="'img/productos/' + nombreImagen" [alt]="nombreImagen" class="product-image" />
   <div class="card-body">
     <h3 class="title">{{ descripcion }}</h3>
     <p class="price">{{ precio | currency:'USD' }}</p>
     <p class="price">{{ clasificacion }}</p>
-    <button (click)="agregarAlCarritoActivo(id)" type="button" class="btn btn-primary">Agregar +</button>
+    <button (click)="agregarAlCarritoActivo(id)" class="btn btn-primary">
+        <i class="bi bi-cart-plus me-2"></i> Agregar al carrito
+      </button>
   </div>
-</div>
+</a>

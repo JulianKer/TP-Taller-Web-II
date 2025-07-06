@@ -9,3 +9,9 @@ export async function getProductos() {
   }
   return JSON.parse(JSON.stringify(productos));
 }
+
+export async function getProductoById(id: number) {
+  return await prisma.producto.findUnique({
+    where: { id: id }
+  });
+}

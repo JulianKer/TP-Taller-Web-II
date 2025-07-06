@@ -15,4 +15,9 @@ export class ProductoService {
   listProductos(): Observable<Producto[]> {
     return this.http.get<Producto[]>(`${this.baseUrl}/obtenerproductos`);
   }
+
+  obtenerProductoPorId(id: number): Observable<Producto>{
+    console.log("sigo en")
+    return this.http.get<Producto>(`${this.baseUrl}/obtenerProductoPorId/${id}`);
+  }
 }
