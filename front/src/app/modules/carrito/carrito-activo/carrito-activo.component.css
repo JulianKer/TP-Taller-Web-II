@@ -6,3 +6,13 @@
     gap: 50px;
     padding: 0 25px;
 }
+
+.cada-historico{
+    padding:  0 25px;
+}
+
+.card{
+    max-width: 90dvw;
+    min-width: 80dvw;
+    overflow: auto;
+}

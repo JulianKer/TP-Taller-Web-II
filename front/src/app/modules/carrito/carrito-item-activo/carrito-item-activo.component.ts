@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal, Inject  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,7 +11,8 @@ import { CommonModule } from '@angular/common';
 export class CarritoItemActivoComponent {
   @Input() item!: any;
   @Input() index!: number;
-
+  @Input() mostrarAccionesEnHijo!: boolean;
+  
   @Input() aumentarCantidad!: (index: number) => void;
   @Input() disminuirCantidad!: (index: number) => void;
   @Input() eliminarItem!: (index: number) => void;

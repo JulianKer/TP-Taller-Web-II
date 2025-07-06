@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CarritoItemActivoComponent } from '../carrito-item-activo/carrito-item-activo.component'; // ajustá ruta según tu proyecto
+import { Router } from '@angular/router';
 
 interface Producto {
   id: number;
@@ -36,6 +37,9 @@ interface Carrito {
 
 
 export class CarritoActivoComponent {
+  private router = inject(Router);
+  mostrarAcciones = signal(false);
+
   carrito = signal<Carrito>({
     id: 1,
     usuarioId: 123,
@@ -72,7 +76,9 @@ export class CarritoActivoComponent {
 
   constructor() {
     this.actualizarTotal();
+    this.mostrarAcciones.set(this.router.url === '/carrito');
   }
+
 
   aumentarCantidad(index: number) {
     const carritoActual = this.carrito();

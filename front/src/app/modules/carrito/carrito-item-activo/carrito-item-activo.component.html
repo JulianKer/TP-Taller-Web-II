@@ -18,16 +18,16 @@
   </div>
 
   <div class="d-flex align-items-center">
-    <button class="btn btn-sm btn-outline-secondary me-2" (click)="disminuirCantidad(index)">−</button>
+    <button *ngIf="mostrarAccionesEnHijo" class="btn btn-sm btn-outline-secondary me-2" (click)="disminuirCantidad(index)">−</button>
     <span class="mx-2">{{ item.cantidad }}</span>
-    <button class="btn btn-sm btn-outline-secondary ms-2" (click)="aumentarCantidad(index)">+</button>
+    <button *ngIf="mostrarAccionesEnHijo" class="btn btn-sm btn-outline-secondary ms-2" (click)="aumentarCantidad(index)">+</button>
   </div>
 
   <div class="text-success me-3 total">
     ${{ (item.producto.precio * item.cantidad) | number:'1.2-2' }}
   </div>
 
-  <button class="btn btn-sm btn-danger" (click)="eliminarItem(index)">
+  <button *ngIf="mostrarAccionesEnHijo" class="btn btn-sm btn-danger" (click)="eliminarItem(index)">
     &times;
   </button>
 </div>
