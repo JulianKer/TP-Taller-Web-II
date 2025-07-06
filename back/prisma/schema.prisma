@@ -38,7 +38,7 @@ model Carrito {
   id         Int           @id @default(autoincrement())
   usuarioId  Int
   creadoEn   DateTime      @default(now())
-  estado     String        // Ej: "activo", "comprado", etc.
+  estado     String        // "activo", "comprado"
   total      Float         @default(0)
 
   usuario    Usuario       @relation(fields: [usuarioId], references: [id])

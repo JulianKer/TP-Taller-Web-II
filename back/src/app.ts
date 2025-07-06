@@ -4,6 +4,7 @@ import authRoutes from './routes/auth.routes';
 
 import perfilRoutes from './routes/perfil.routes';
 import routerProductos from './routes/productos.routes';
+import routerCarrito from './routes/carrito.routes';
 
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/perfil', perfilRoutes);
 app.use('/api/producto', routerProductos);
+app.use('/api/carrito', routerCarrito);
 
 
 app.listen(3000, () => {

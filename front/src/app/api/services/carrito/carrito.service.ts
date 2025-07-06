@@ -17,7 +17,8 @@ export class CarritoService {
   }
 
   listCarritosHistorico(): Observable<Carrito[]>{
-      return this.http.get<Carrito[]>(`${this.baseUrl}/obtenerCarritosHistorico`);
+      const id = localStorage.getItem('usuarioId')
+      return this.http.get<Carrito[]>(`${this.baseUrl}/obtenerCarritosHistorico/${id}`);
   }
 
   obtenerCarritoActivo(): Observable<any>{

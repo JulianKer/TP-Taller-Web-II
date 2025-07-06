@@ -4,7 +4,7 @@
       <app-carrito-activo></app-carrito-activo>
     </div>
     <div class="col-12" *ngFor="let carrito of carritos()">
-        <app-carrito-historico [numeroCarrito]="carrito.id" [fecha]="carrito.fecha" [total]="carrito.total" [cantidadDeItems]="carrito.cantidadDeItems"></app-carrito-historico>
+        <app-carrito-historico [numeroCarrito]="carrito.id" [fecha]="carrito.creadoEn" [total]="carrito.total" [cantidadDeItems]="carrito.items.length"></app-carrito-historico>
     </div>
   </div>
 </div>

@@ -29,8 +29,11 @@ export class CarritoContenedorComponent implements OnInit, OnDestroy {
   }
 
   obtenerCarritos(): void {
-    this.carritoService.listCarritosHistoricoTEST().subscribe({
-      next: (data) => this.carritos.set(data),
+    this.carritoService.listCarritosHistorico().subscribe({
+      next: (data) => {
+        this.carritos.set(data)
+        console.log(data)
+      },
       error: (err) => {
         console.error('Error al obtener carritos:', err);
         this.mensajeError = 'No hay carritos';

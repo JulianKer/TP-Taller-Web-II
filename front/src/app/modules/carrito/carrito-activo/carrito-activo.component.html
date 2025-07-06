@@ -1,7 +1,7 @@
 <div class="card p-3 shadow-sm">
   <h4 *ngIf="mostrarAcciones()" class="mb-4">Carrito actual: #{{ carrito().id }}</h4>
   <h4 *ngIf="!mostrarAcciones()" class="mb-4">Pedido: #{{ carrito().id }}</h4>
-  <h6 *ngIf="!mostrarAcciones()" class="mb-4">{{carrito().creadoEn}}</h6>
+  <h6 *ngIf="!mostrarAcciones()" class="mb-4">{{carrito().creadoEn | date:'dd-MM-yyyy'}}</h6>
 
   <app-carrito-item-activo
   *ngFor="let item of carrito().items; let i = index"
