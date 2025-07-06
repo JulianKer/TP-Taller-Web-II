@@ -1,0 +1,28 @@
+<div class="card p-3 shadow-sm">
+  <h4 class="mb-4">Carrito actual: #{{ carrito().id }}</h4>
+
+  <app-carrito-item-activo
+  *ngFor="let item of carrito().items; let i = index"
+  [item]="item"
+  [index]="i"
+  [aumentarCantidad]="aumentarCantidad.bind(this)"
+  [disminuirCantidad]="disminuirCantidad.bind(this)"
+  [eliminarItem]="eliminarItem.bind(this)"
+></app-carrito-item-activo>
+
+    <div class="fila-final d-flex flex-column flex-md-row  mt-4">
+      <div class="fw-bold fs-5 text-md-start text-center mb-3 mb-md-0">
+        Total: ${{ carrito().total | number:'1.2-2' }}
+      </div>
+
+      <div class="text-md-end text-center">
+        <button (click)="1==1" class="btn btn-success d-inline-flex align-items-center">
+          <i class="bi bi-cart me-2"></i> Comprar
+        </button>
+      </div>
+    </div>
+
+  <ng-template #carritoVacio>
+    <p class="text-center text-muted">El carrito está vacío.</p>
+  </ng-template>
+</div>

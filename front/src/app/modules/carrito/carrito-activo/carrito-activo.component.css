@@ -1,0 +1,8 @@
+
+.fila-final{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 50px;
+    padding: 0 25px;
+}

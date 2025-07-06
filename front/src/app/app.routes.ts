@@ -32,6 +32,11 @@ export const routes: Routes = [
         canActivate: [NecesitaLoguearse]
     },
     {
+        path : 'carrito',
+        loadChildren : ()=>import('./modules/carrito/carrito.routes').then(e => e.carritoRoutes),
+        canActivate: [NecesitaLoguearse]
+    },
+    {
         path : '**',
         redirectTo : 'inicio'
     },

@@ -1,0 +1,10 @@
+<div class="container my-5">
+  <div class="row gy-3">
+    <div class="col-12">
+      <app-carrito-activo></app-carrito-activo>
+    </div>
+    <div class="col-12" *ngFor="let carrito of carritos()">
+        <app-carrito-historico [numeroCarrito]="carrito.id" [fecha]="carrito.fecha" [total]="carrito.total" [cantidadDeItems]="carrito.cantidadDeItems"></app-carrito-historico>
+    </div>
+  </div>
+</div>

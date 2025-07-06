@@ -1,0 +1,20 @@
+.total{
+    padding: 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.total > p{
+    margin: 0;
+}
+
+.product-image-carrito{
+    max-width: 100px;
+
+}
+
+.cada-historico{
+    padding:  0 25px;
+}
