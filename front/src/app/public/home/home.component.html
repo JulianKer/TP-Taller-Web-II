@@ -1,40 +1,18 @@
-
 <div class="container py-5">
+  <!-- Hero -->
   <div class="text-center mb-5">
-    <h1 class="display-4">Bienvenido a la Tienda Online</h1>
-    <p class="lead">Explorá nuestros productos y hacé tus pedidos fácilmente.</p>
-    <a class="btn btn-primary btn-lg mt-3" routerLink="/productos">Ver productos</a>
+    <h1 class="display-4 fw-bold text-danger">Merch - F1</h1>
+    <p class="lead text-muted">Equipamiento oficial y estilo para verdaderos fanáticos de la velocidad.</p>
+    <a [routerLink]="['/productos']" class="btn btn-outline-danger btn-lg px-5 mt-3">Ver productos</a>
   </div>
 
-  <div class="row text-center">
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <h5 class="card-title">Usuarios</h5>
-          <p class="card-text">Registrate o iniciá sesión para comenzar a comprar.</p>
-          <a class="btn btn-outline-primary" routerLink="/auth">Ingresar</a>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <h5 class="card-title">Carrito</h5>
-          <p class="card-text">Agregá productos a tu carrito y gestioná tu pedido.</p>
-          <a class="btn btn-outline-success" routerLink="/carrito">Ver carrito</a>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-md-4 mb-4">
-      <div class="card shadow-sm h-100">
-        <div class="card-body">
-          <h5 class="card-title">Contacto</h5>
-          <p class="card-text">¿Tenés dudas? Contactanos por cualquier consulta.</p>
-          <a class="btn btn-outline-secondary" routerLink="/contacto">Contacto</a>
-        </div>
-      </div>
+  <div class="row align-items-center g-5">
+    <div class="col-md-6 cont-img overflow-hidden">
+  <img src="https://cdn-6.motorsport.com/images/mgl/0ZRjL9M0/s800/red-bull-racing-2022-f1-car-1.jpg" class="img-fluid object-fit-cover w-100 h-100" alt="Auto F1">
+</div>
+    <div class="col-md-6">
+      <h2 class="fw-semibold mb-3">Todo lo que amás de la F1</h2>
+      <p class="text-muted fs-5">Explorá artículos de tus escuderías favoritas: indumentaria, coleccionables, modelos exclusivos y más. Directo desde el pitlane a tu casa.</p>
     </div>
   </div>
 </div>

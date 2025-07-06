@@ -1,5 +1,6 @@
 nav{
-    position: relative;
+    position: fixed;
+    width: 100%;
     z-index: 10;
-    border-bottom: 2px solid rgb(189, 0, 0);
+    border-bottom: 5px solid rgb(189, 0, 0);
 }
