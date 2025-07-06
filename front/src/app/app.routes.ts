@@ -23,7 +23,13 @@ export const routes: Routes = [
     },
     {
         path: 'perfil',
-        loadChildren:()=> import('./modules/usuarios/perfil/perfil.routes').then(m => m.perfilRoutes)    
+        loadChildren:()=> import('./modules/usuarios/perfil/perfil.routes').then(m => m.perfilRoutes)  
+          
+    },
+    {
+        path : 'productos',
+        loadChildren : ()=>import('./modules/productos/productos.routes').then(e => e.productosRoutes),
+        canActivate: [NecesitaLoguearse]
     },
     {
         path : '**',

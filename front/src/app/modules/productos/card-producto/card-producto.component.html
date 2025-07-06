@@ -1,0 +1,9 @@
+<div class="card" (click)="verProducto(id)">
+  <img [src]="'img/productos/' + nombreImagen" [alt]="nombreImagen" class="product-image" />
+  <div class="card-body">
+    <h3 class="title">{{ descripcion }}</h3>
+    <p class="price">{{ precio | currency:'USD' }}</p>
+    <p class="price">{{ clasificacion }}</p>
+    <button (click)="agregarAlCarritoActivo(id)" type="button" class="btn btn-primary">Agregar +</button>
+  </div>
+</div>

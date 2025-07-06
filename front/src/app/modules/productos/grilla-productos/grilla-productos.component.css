@@ -1,0 +1,12 @@
+
+.grilla{
+    min-width: 95dvw;
+    max-height: 100%;
+    margin: 100px 0;
+}
+
+.contenedor-grilla-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
