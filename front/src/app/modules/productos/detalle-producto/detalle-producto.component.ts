@@ -6,6 +6,7 @@ import { ProductoService } from '../../../api/services/producto/producto.service
   standalone: true,
   selector: 'app-detalle-producto',
   templateUrl: './detalle-producto.component.html',
+  styleUrl: './detalle-producto.component.css'
 })
 export class DetalleProductoComponent {
   id: number = 0;
