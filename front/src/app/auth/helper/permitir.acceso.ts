@@ -10,7 +10,7 @@ export class NecesitaLoguearse implements CanActivate {
 
   canActivate(): boolean | UrlTree {
     const user = localStorage.getItem('usuarioLogueado');
-    if (user) return true;
+    if (user ==='si') return true;
     return this.router.parseUrl('/auth');
   }
 }

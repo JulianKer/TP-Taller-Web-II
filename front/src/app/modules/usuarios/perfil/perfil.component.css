@@ -1,0 +1,17 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.perfil-background {
+  background-image: url('https://cdn.racingnews365.com/2025/Verstappen/_1800x945_crop_center-center_75_none/Verstappen-Bahrain-test-old-wing.jpg?v=1740760849');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; 
+  width: 100vw;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
