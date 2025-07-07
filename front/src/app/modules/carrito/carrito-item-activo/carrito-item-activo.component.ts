@@ -16,4 +16,7 @@ export class CarritoItemActivoComponent {
   @Input() aumentarCantidad!: (index: number) => void;
   @Input() disminuirCantidad!: (index: number) => void;
   @Input() eliminarItem!: (index: number) => void;
+
+  
+  @Input() onObtenerCarritos!: () => void;
 }

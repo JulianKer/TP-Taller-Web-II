@@ -1,5 +1,25 @@
 import { prisma } from '../../prismaClient';
 
+export async function crearCarrito(usuarioId: number) {
+  const nuevoCarrito = await prisma.carrito.create({
+    data: {
+      usuarioId,
+      estado: 'activo',
+      total: 0,
+      creadoEn: new Date().toISOString()
+    },
+    include: {
+      items: {
+        include: {
+          producto: true
+        }
+      }
+    }
+  });
+
+  return nuevoCarrito;
+}
+
 export async function obtenerCarritosHistorico(usuarioId: number) {
   const carritos = await prisma.carrito.findMany({
     where: {
@@ -43,7 +63,7 @@ export async function obtenerCarritoActivo(usuarioId: number) {
   });
 
   if (!carritoActivo) {
-    throw new Error('No hay carritos activos para este usuario');
+    return JSON.parse(JSON.stringify(await crearCarrito(usuarioId)));
   }
 
   return JSON.parse(JSON.stringify(carritoActivo));
@@ -211,12 +231,17 @@ export async function finalizarCompraYCrearNuevoCarrito(idCarritoActual: number)
       }
     });
   }
+  
+  const total = carritoActivo.items.reduce((acc, item) => {
+    return acc + item.cantidad * item.producto.precio;
+  }, 0);
 
   await prisma.carrito.update({
     where: { id: idCarritoActual },
     data: {
       estado: 'comprado',
       creadoEn: new Date(),
+      total: total
     }
   });
 

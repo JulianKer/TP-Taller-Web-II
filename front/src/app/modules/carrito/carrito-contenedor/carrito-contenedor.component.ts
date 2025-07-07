@@ -16,7 +16,15 @@ export class CarritoContenedorComponent implements OnInit, OnDestroy {
   private carritoService = inject(CarritoService);
 
   carritos = signal<Carrito[]>([]);
-  carritoActivo = signal<Carrito[]>([]);
+  // carritoActivo = signal<Carrito>();
+  carritoActivo = signal<Carrito>({
+    id: 0,
+    usuarioId: 0,
+    creadoEn: '',
+    estado: '',
+    total: 0,
+    items: []
+  });
   cargando = signal(true);
   mensajeError = '';
 
@@ -43,7 +51,7 @@ export class CarritoContenedorComponent implements OnInit, OnDestroy {
   }
 
   obtenerCarritoActivo(): void {
-    this.carritoService.obtenerCarritoActivoTEST().subscribe({
+    this.carritoService.obtenerCarritoActivo().subscribe({
       next: (data) => this.carritoActivo.set(data),
       error: (err) => {
         console.error('Error al obtener carritos:', err);

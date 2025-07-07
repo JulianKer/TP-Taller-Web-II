@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, Input } from '@angular/core';
 import { CarritoItemActivoComponent } from '../carrito-item-activo/carrito-item-activo.component'; // ajustá ruta según tu proyecto
 import { Router, ActivatedRoute } from '@angular/router';
 import { Carrito } from '../../../api/models/carrito.model';
@@ -15,6 +15,7 @@ import { CarritoService } from '../../../api/services/carrito/carrito.service';
 
 
 export class CarritoActivoComponent {
+  @Input() obtenerCarritos!: () => void;
   private carritoService = inject(CarritoService);
   msjExito = signal<string>('');
   msjError = signal<string>('');
@@ -143,6 +144,9 @@ export class CarritoActivoComponent {
     this.carritoService.terminarCompra(idCarritoActual).subscribe({
       next: () => {
         this.cargarCarritoActivo();
+        if (this.obtenerCarritos) {
+          this.obtenerCarritos(); // aca mando a llamar al metodo de obtener carritos de nuevo asi se actualiza je
+        } 
         this.msjExito.set('Compra realizada con éxito!');
         setTimeout(() => this.msjExito.set(''), 3000);
       },
