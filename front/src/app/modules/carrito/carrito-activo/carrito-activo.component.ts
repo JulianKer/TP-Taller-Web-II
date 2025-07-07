@@ -81,7 +81,6 @@ export class CarritoActivoComponent {
     const item = carritoActual.items[index];
     this.carritoService.aumentarCantidadProducto(carritoActual.id, item.producto.id).subscribe({
       next: () => {
-        console.log('Cantidad actualizada en la base de datos');
         this.msjExito.set('Cantidad actualizada con éxito!');
         setTimeout(() => this.msjExito.set(''), 3000);
       },
@@ -97,6 +96,17 @@ export class CarritoActivoComponent {
       carritoActual.items[index].cantidad--;
       this.carrito.set(carritoActual);
       this.actualizarTotal();
+
+      const item = carritoActual.items[index];
+      this.carritoService.disminuirCantidad(carritoActual.id, item.producto.id).subscribe({
+      next: () => {
+        this.msjExito.set('Cantidad actualizada con éxito!');
+        setTimeout(() => this.msjExito.set(''), 3000);
+      },
+      error: (error) => {
+        console.error('Error al actualizar cantidad en el backend:', error);
+      }
+    });
     }
   }
 

@@ -3,7 +3,8 @@ import { obtenerCarritosHistorico,
     obtenerCarritoActivo, 
     obtenerDetalleCarrito, 
     agregarProductoAlCarrito, 
-    aumentarCantidadProductoDelCarrito } from "../services/carrito/carrito.service";
+    aumentarCantidadProductoDelCarrito,
+    disminuirCantidadProductoDelCarrito } from "../services/carrito/carrito.service";
 
 export async function getCarritosHistorico(req: Request, res: Response) {
     
@@ -61,6 +62,18 @@ export async function aumentarCantidadProducto(req: Request, res: Response) {
 
   try {
     const carritoActualizado = await aumentarCantidadProductoDelCarrito(carritoActualId, productoId);
+    res.json(carritoActualizado);
+  } catch (error: any) {
+    res.status(404).json({ error: error.message});
+  }
+}
+
+export async function disminuirCantidadProducto(req: Request, res: Response) {
+  const carritoActualId = parseInt(req.params.carritoActualId);
+  const productoId = parseInt(req.params.productoId);
+
+  try {
+    const carritoActualizado = await disminuirCantidadProductoDelCarrito(carritoActualId, productoId);
     res.json(carritoActualizado);
   } catch (error: any) {
     res.status(404).json({ error: error.message});
