@@ -17,6 +17,7 @@ import { CarritoService } from '../../../api/services/carrito/carrito.service';
 export class CarritoActivoComponent {
   private carritoService = inject(CarritoService);
   msjExito = signal<string>('');
+  msjError = signal<string>('');
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -125,6 +126,29 @@ export class CarritoActivoComponent {
       },
       error: (error) => {
         console.error('Error al eiminar el producto en el backend:', error);
+      }
+    });
+  }
+  
+  
+  terminarCompra() {
+    const carritoActual = this.carrito();
+    const idCarritoActual = carritoActual.id;
+
+    if (!carritoActual.items || carritoActual.items.length === 0) {
+      this.msjError.set('No podés terminar la compra si el carrito está vacío!');
+      setTimeout(() => this.msjError.set(''), 3000);
+      return;
+    }
+    this.carritoService.terminarCompra(idCarritoActual).subscribe({
+      next: () => {
+        this.msjExito.set('Compra realizada con éxito!');
+        setTimeout(() => this.msjExito.set(''), 3000);
+      },
+      error: (error) => {
+        console.error('Error al eiminar el producto en el backend:', error);
+        this.msjError.set('Hubo un error al procesar la compra.');
+        setTimeout(() => this.msjError.set(''), 3000);
       }
     });
   }

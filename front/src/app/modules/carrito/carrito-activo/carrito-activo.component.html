@@ -25,7 +25,7 @@
       </div>
 
       <div *ngIf="mostrarAcciones()" class="text-md-end text-center">
-        <button (click)="1==1" class="btn btn-success d-inline-flex align-items-center">
+        <button (click)="terminarCompra()" class="btn btn-success d-inline-flex align-items-center">
           <i class="bi bi-cart me-2"></i> Comprar
         </button>
       </div>
@@ -37,4 +37,7 @@
 </div>
 <div *ngIf="msjExito()" class="alert alert-success mt-2 msj-exito">
   {{ msjExito() }}
+</div>
+<div *ngIf="msjError()" class="alert alert-danger mt-2 msj-exito">
+  {{ msjError() }}
 </div>

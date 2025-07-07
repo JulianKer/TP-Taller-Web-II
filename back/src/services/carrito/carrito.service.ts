@@ -181,6 +181,66 @@ export async function eliminarItem(carritoId: number, itemId: number) {
 }
 
 
+export async function finalizarCompraYCrearNuevoCarrito(idCarritoActual: number) {
+  //para terminar la compra, le cambio el estado del carrito actual a "comprado" o algo q sea distinto de "activo"
+  // y además, el precio del producto lo pongo a nivel de carrito-item para mantener el "historico"
+  // de cuanto salió el producto al momento de la compra por mas q el prod actual tenga oootro precio
+  const carritoActivo = await prisma.carrito.findFirst({
+    where: {
+      id: idCarritoActual,
+      estado: 'activo'
+    },
+    include: {
+      items: {
+        include: {
+          producto: true
+        }
+      }
+    }
+  });
+
+  if (!carritoActivo) {
+    throw new Error('No se encontró un carrito activo con ese ID.');
+  }
+
+  for (const item of carritoActivo.items) {
+    await prisma.carritoItem.update({
+      where: { id: item.id },
+      data: {
+        precioUnitario: item.producto.precio
+      }
+    });
+  }
+
+  await prisma.carrito.update({
+    where: { id: idCarritoActual },
+    data: {
+      estado: 'comprado',
+      creadoEn: new Date(),
+    }
+  });
+
+  const nuevoCarrito = await prisma.carrito.create({
+    data: {
+      usuarioId: carritoActivo.usuarioId,
+      estado: 'activo',
+      total: 0,
+      creadoEn: new Date()
+    },
+    include: {
+      items: {
+        include: {
+          producto: true
+        }
+      }
+    }
+  });
+
+  return JSON.parse(JSON.stringify(nuevoCarrito));
+}
+
+
+
 export async function agregarProductoAlCarrito(userId: number, idProducto: number) {
   // hay hciismos esta lógic apara que si el user quiere agregar un producto que YA ESTA en el carrito, que no lo pise sino que
   //incremente la cantidad de ESE producto en 1, ahora, si el que intenta agregar, NO ESTÁ, cra ese obj junction de carrito item

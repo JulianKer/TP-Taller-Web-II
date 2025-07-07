@@ -43,6 +43,10 @@ export class CarritoService {
   eliminarItem(carritoActualId: number, itemId: number): Observable<Carrito>{
     return this.http.get<Carrito>(`${this.baseUrl}/eliminarItem/${carritoActualId}/${itemId}`);
   }
+  
+  terminarCompra(idCarritoActual: number): Observable<Carrito>{
+    return this.http.get<Carrito>(`${this.baseUrl}/terminarCompra/${idCarritoActual}`);
+  }
 
 
 
