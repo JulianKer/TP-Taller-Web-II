@@ -1,5 +1,5 @@
 import express from 'express';
-import { getCarritosHistorico, getCarritoActivo, getDetalleCarrito, agregarAlCarrito, aumentarCantidadProducto, disminuirCantidadProducto } from '../controllers/carritoController';
+import { getCarritosHistorico, getCarritoActivo, getDetalleCarrito, agregarAlCarrito, aumentarCantidadProducto, disminuirCantidadProducto, eliminarItemDelCarrito } from '../controllers/carritoController';
 
 const routerCarrito = express.Router();
 
@@ -9,5 +9,6 @@ routerCarrito.get('/obtenerDetallePedido/:userId/:carritoId', getDetalleCarrito)
 routerCarrito.get('/agregarAlCarrito/:userId/:idProducto', agregarAlCarrito);
 routerCarrito.get('/aumentarCantidadProducto/:carritoActualId/:productoId', aumentarCantidadProducto);
 routerCarrito.get('/disminuirCantidadProducto/:carritoActualId/:productoId', disminuirCantidadProducto);
+routerCarrito.get('/eliminarItem/:carritoActualId/:itemId', eliminarItemDelCarrito);
 
 export default routerCarrito;

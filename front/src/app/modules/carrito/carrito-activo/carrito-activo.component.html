@@ -3,15 +3,21 @@
   <h4 *ngIf="!mostrarAcciones()" class="mb-4">Pedido: #{{ carrito().id }}</h4>
   <h6 *ngIf="!mostrarAcciones()" class="mb-4">{{carrito().creadoEn | date:'dd-MM-yyyy'}}</h6>
 
+<div *ngIf="carrito().items.length > 0; else sinProductos">
   <app-carrito-item-activo
-  *ngFor="let item of carrito().items; let i = index"
-  [item]="item"
-  [index]="i"
-  [aumentarCantidad]="aumentarCantidad.bind(this)"
-  [disminuirCantidad]="disminuirCantidad.bind(this)"
-  [eliminarItem]="eliminarItem.bind(this)"
-  [mostrarAccionesEnHijo]="mostrarAcciones()"
-></app-carrito-item-activo>
+    *ngFor="let item of carrito().items; let i = index"
+    [item]="item"
+    [index]="i"
+    [aumentarCantidad]="aumentarCantidad.bind(this)"
+    [disminuirCantidad]="disminuirCantidad.bind(this)"
+    [eliminarItem]="eliminarItem.bind(this)"
+    [mostrarAccionesEnHijo]="mostrarAcciones()"
+  ></app-carrito-item-activo>
+</div>
+
+<ng-template #sinProductos>
+  <h5 class="alert alert-warning">No hay productos en el carrito.</h5>
+</ng-template>
 
     <div class="fila-final d-flex flex-column flex-md-row  mt-4">
       <div class="fw-bold fs-5 text-md-start text-center mb-3 mb-md-0">

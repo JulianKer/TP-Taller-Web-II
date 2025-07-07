@@ -112,9 +112,21 @@ export class CarritoActivoComponent {
 
   eliminarItem(index: number) {
     const carritoActual = this.carrito();
+    const item = carritoActual.items[index];
+    
     carritoActual.items.splice(index, 1);
     this.carrito.set(carritoActual);
     this.actualizarTotal();
+
+    this.carritoService.eliminarItem(carritoActual.id, item.id).subscribe({
+      next: () => {
+        this.msjExito.set('Producto eliminado con éxito!');
+        setTimeout(() => this.msjExito.set(''), 3000);
+      },
+      error: (error) => {
+        console.error('Error al eiminar el producto en el backend:', error);
+      }
+    });
   }
 
   actualizarTotal() {
