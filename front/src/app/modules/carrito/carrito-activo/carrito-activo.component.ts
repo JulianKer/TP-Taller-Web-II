@@ -142,6 +142,7 @@ export class CarritoActivoComponent {
     }
     this.carritoService.terminarCompra(idCarritoActual).subscribe({
       next: () => {
+        this.cargarCarritoActivo();
         this.msjExito.set('Compra realizada con éxito!');
         setTimeout(() => this.msjExito.set(''), 3000);
       },
