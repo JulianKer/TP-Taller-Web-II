@@ -1,11 +1,31 @@
-<a class="card" [routerLink]="['/productos/detalle', id]">
+<!-- <a class="card" [routerLink]="['/productos/detalle', id]">
   <img [src]="'img/productos/' + nombreImagen" [alt]="nombreImagen" class="product-image" />
   <div class="card-body">
     <h3 class="title">{{ descripcion }}</h3>
     <p class="price">{{ precio | currency:'USD' }}</p>
     <p class="price">{{ clasificacion }}</p>
-    <button (click)="agregarAlCarritoActivo(id)" class="btn btn-primary">
+    <button (click)="agregarAlCarritoActivo(id); $event.stopPropagation()" class="btn btn-primary boton-agregar">
         <i class="bi bi-cart-plus me-2"></i> Agregar al carrito
-      </button>
+    </button>
   </div>
-</a>
+</a> -->
+
+<div class="producto-card">
+  <a class="card" [routerLink]="['/productos/detalle', id]">
+    <img [src]="'img/productos/' + nombreImagen" [alt]="nombreImagen" class="product-image" />
+    <div class="card-body">
+      <h3 class="title">{{ descripcion }}</h3>
+      <p class="price">{{ precio | currency:'USD' }}</p>
+      <p class="price">{{ clasificacion }}</p>
+    </div>
+  </a>
+
+  <button 
+    (click)="agregarAlCarritoActivo(id);" 
+    class="btn btn-primary boton-agregar">
+    <i class="bi bi-cart-plus me-2"></i> Agregar al carrito
+  </button>
+</div>
+<div *ngIf="mensajeExito" class="alert alert-success mt-2 msj-exito">
+  {{ mensajeExito }}
+</div>

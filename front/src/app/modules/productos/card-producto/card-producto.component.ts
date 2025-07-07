@@ -22,9 +22,23 @@ export class CardProductoComponent {
   private carritoService = inject(CarritoService);
 
 
-  agregarAlCarritoActivo(idProductoAAgregar: number){
-    // console.log("producto " + idProductoAAgregar + " agregado.")
-    this.carritoService.agregarAlCarrito(idProductoAAgregar);
+   mensajeExito: string = '';
+
+  agregarAlCarritoActivo(idProductoAAgregar: number): void {
+    this.carritoService.agregarAlCarrito(idProductoAAgregar).subscribe({
+      next: (carritoActualizado) => {
+        console.log('Producto agregado al carrito:', carritoActualizado);
+        this.mensajeExito = 'Producto agregado al carrito correctamente';
+
+        // Ocultar el mensaje después de unos segundos
+        setTimeout(() => this.mensajeExito = '', 3000);
+      },
+      error: (err) => {
+        console.error('Error al agregar producto al carrito:', err);
+        this.mensajeExito = 'Hubo un error al agregar el producto';
+        setTimeout(() => this.mensajeExito = '', 3000);
+      }
+    });
   }
 }
 

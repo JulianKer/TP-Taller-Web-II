@@ -12,8 +12,9 @@ export class CarritoService {
 
   constructor() { }
 
-  agregarAlCarrito(idProducto: number): void{
-    
+  agregarAlCarrito(idProducto: number): Observable<Carrito> {
+    const userId = localStorage.getItem('usuarioId');
+    return this.http.get<Carrito>(`${this.baseUrl}/agregarAlCarrito/${userId}/${idProducto}`);
   }
 
   listCarritosHistorico(): Observable<Carrito[]>{
@@ -28,7 +29,6 @@ export class CarritoService {
   
   obtenerDetallePedido(carritoId: number): Observable<Carrito>{
     const userId = localStorage.getItem('usuarioId')
-    console.log(userId)
     return this.http.get<Carrito>(`${this.baseUrl}/obtenerDetallePedido/${userId}/${carritoId}`);
   }
 

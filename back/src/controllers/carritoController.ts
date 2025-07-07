@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { obtenerCarritosHistorico, obtenerCarritoActivo, obtenerDetalleCarrito } from "../services/carrito/carrito.service";
+import { obtenerCarritosHistorico, obtenerCarritoActivo, obtenerDetalleCarrito, agregarProductoAlCarrito } from "../services/carrito/carrito.service";
 
 export async function getCarritosHistorico(req: Request, res: Response) {
     
@@ -36,5 +36,18 @@ export async function getDetalleCarrito(req: Request, res: Response) {
     } catch (error:any) {
         res.status(404).json({ error: error.message});
     }
+}
+
+
+export async function agregarAlCarrito(req: Request, res: Response) {
+  const userId = parseInt(req.params.userId);
+  const idProducto = parseInt(req.params.idProducto);
+
+  try {
+    const carritoActualizado = await agregarProductoAlCarrito(userId, idProducto);
+    res.json(carritoActualizado);
+  } catch (error: any) {
+    res.status(404).json({ error: error.message});
+  }
 }
 

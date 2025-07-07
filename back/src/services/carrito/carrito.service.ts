@@ -75,3 +75,70 @@ export async function obtenerDetalleCarrito(userId: number, carritoId: number){
 }
 
 
+export async function agregarProductoAlCarrito(userId: number, idProducto: number) {
+  // hay hciismos esta lógic apara que si el user quiere agregar un producto que YA ESTA en el carrito, que no lo pise sino que
+  //incremente la cantidad de ESE producto en 1, ahora, si el que intenta agregar, NO ESTÁ, cra ese obj junction de carrito item
+  // que apunta a un prod y a este carrito y le pone cantidad 1 je
+  const carritoActivo = await prisma.carrito.findFirst({
+    where: {
+      usuarioId: userId,
+      estado: 'activo'
+    },
+    include: {
+      items: true
+    }
+  });
+
+  if (!carritoActivo) {
+    throw new Error('El usuario no tiene un carrito activo.');
+  }
+
+  const itemExistente = await prisma.carritoItem.findFirst({
+    where: {
+      carritoId: carritoActivo.id,
+      productoId: idProducto
+    }
+  });
+
+  if (itemExistente) {
+    await prisma.carritoItem.update({
+      where: { id: itemExistente.id },
+      data: {
+        cantidad: { increment: 1 }
+      }
+    });
+  } else {
+    const producto = await prisma.producto.findUnique({
+      where: { id: idProducto }
+    });
+
+    if (!producto) {
+      throw new Error('Producto no encontrado');
+    }
+
+    await prisma.carritoItem.create({
+      data: {
+        carritoId: carritoActivo.id,
+        productoId: idProducto,
+        cantidad: 1,
+        precioUnitario: producto.precio
+      }
+    });
+  }
+
+  const carritoActualizado = await prisma.carrito.findUnique({
+    where: { id: carritoActivo.id },
+    include: {
+      items: {
+        include: {
+          producto: true
+        }
+      }
+    }
+  });
+
+  return JSON.parse(JSON.stringify(carritoActualizado));
+}
+
+
+
