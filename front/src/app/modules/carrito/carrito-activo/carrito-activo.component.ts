@@ -16,6 +16,7 @@ import { CarritoService } from '../../../api/services/carrito/carrito.service';
 
 export class CarritoActivoComponent {
   private carritoService = inject(CarritoService);
+  msjExito = signal<string>('');
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -29,31 +30,6 @@ export class CarritoActivoComponent {
     total: 0,
     items: []
   });
-
-// carrito = signal<Carrito>({
-//   id: 1,
-//   usuarioId: 123,
-//   creadoEn: new Date().toISOString(),  // string, no Date
-//   estado: 'activo',
-//   total: 0,
-//   items: [
-//     {
-//       id: 1,
-//       carritoId: 1,
-//       productoId: 1,
-//       cantidad: 2,
-//       precioUnitario: 100,
-//       producto: {
-//         id: 1,
-//         nombre: 'auto_ferrari.avif',
-//         descripcion: 'Descripción A',
-//         clasificacion: 'Clasificación A',
-//         precio: 100
-//       }
-//     }
-//   ]
-// });
-
 
   ngOnInit(): void {
     this.mostrarAcciones.set(this.router.url === '/carrito');
@@ -98,9 +74,21 @@ export class CarritoActivoComponent {
 
   aumentarCantidad(index: number) {
     const carritoActual = this.carrito();
-    carritoActual.items[index].cantidad++;
+    carritoActual.items[index].cantidad++; // acá como me llega el index del carrito-item, ya se a cual aumentarle
     this.carrito.set(carritoActual);
     this.actualizarTotal();
+
+    const item = carritoActual.items[index];
+    this.carritoService.aumentarCantidadProducto(carritoActual.id, item.producto.id).subscribe({
+      next: () => {
+        console.log('Cantidad actualizada en la base de datos');
+        this.msjExito.set('Cantidad actualizada con éxito!');
+        setTimeout(() => this.msjExito.set(''), 3000);
+      },
+      error: (error) => {
+        console.error('Error al actualizar cantidad en el backend:', error);
+      }
+    });
   }
 
   disminuirCantidad(index: number) {

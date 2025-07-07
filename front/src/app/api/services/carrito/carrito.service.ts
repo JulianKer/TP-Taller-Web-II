@@ -32,6 +32,10 @@ export class CarritoService {
     return this.http.get<Carrito>(`${this.baseUrl}/obtenerDetallePedido/${userId}/${carritoId}`);
   }
 
+  aumentarCantidadProducto(carritoActualId: number, productoId: number): Observable<Carrito>{
+    return this.http.get<Carrito>(`${this.baseUrl}/aumentarCantidadProducto/${carritoActualId}/${productoId}`);
+  }
+
 
 
 

@@ -75,6 +75,42 @@ export async function obtenerDetalleCarrito(userId: number, carritoId: number){
 }
 
 
+export async function aumentarCantidadProductoDelCarrito(carritoId: number, productoId: number) {
+  // para aumentar la cantidad, yo ya se el carrito y el producto, entocnes busco el carrito item directamente con
+  // ese producto y le subo 1 a cantidad :) y devuelvo ese carrito actualizao
+  const carritoItem = await prisma.carritoItem.findFirst({
+    where: {
+      carritoId: carritoId,
+      productoId: productoId,
+    }
+  });
+
+  if (!carritoItem) {
+    throw new Error('El producto no está en el carrito');
+  }
+
+  const actualizado = await prisma.carritoItem.update({
+    where: { id: carritoItem.id },
+    data: { cantidad: carritoItem.cantidad + 1 }
+  });
+
+  const carritoActualizado = await prisma.carrito.findUnique({
+    where: { id: carritoId },
+    include: {
+      items: {
+        include: { producto: true }
+      }
+    }
+  });
+
+  if (!carritoActualizado) {
+    throw new Error('Carrito no encontrado');
+  }
+
+  return JSON.parse(JSON.stringify(carritoActualizado));
+}
+
+
 export async function agregarProductoAlCarrito(userId: number, idProducto: number) {
   // hay hciismos esta lógic apara que si el user quiere agregar un producto que YA ESTA en el carrito, que no lo pise sino que
   //incremente la cantidad de ESE producto en 1, ahora, si el que intenta agregar, NO ESTÁ, cra ese obj junction de carrito item

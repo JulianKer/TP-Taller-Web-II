@@ -29,3 +29,6 @@
     <p class="text-center text-muted">El carrito está vacío.</p>
   </ng-template>
 </div>
+<div *ngIf="msjExito()" class="alert alert-success mt-2 msj-exito">
+  {{ msjExito() }}
+</div>

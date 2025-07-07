@@ -16,3 +16,11 @@
     min-width: 80dvw;
     overflow: auto;
 }
+
+
+.msj-exito{
+  position: fixed;
+  z-index: 1000;
+  top: 70px;
+  right: 50px;
+}
