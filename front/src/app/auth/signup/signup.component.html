@@ -1,4 +1,4 @@
-<h2 class="mb-4">Registro</h2>
+<!-- <h2 class="mb-4">Registro</h2>
 <form (ngSubmit)="registrar()" class="row g-3">
   <div class="col-md-6">
     <label for="nombre" class="form-label">Nombre</label>
@@ -24,4 +24,35 @@
     <button type="submit" class="btn btn-primary">Registrarse</button>
   </div>
   <div *ngIf="mensaje" class="alert alert-info mt-3">{{ mensaje }}</div>
-</form>
+</form> -->
+
+
+<div class="card shadow-sm p-4">
+  <h2 class="mb-4 text-center">Registro</h2>
+  <form (ngSubmit)="registrar()" class="row g-3">
+    <div class="col-md-6">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input [(ngModel)]="usuario.nombre" name="nombre" id="nombre" class="form-control" required />
+    </div>
+    <div class="col-md-6">
+      <label for="apellido" class="form-label">Apellido</label>
+      <input [(ngModel)]="usuario.apellido" name="apellido" id="apellido" class="form-control" required />
+    </div>
+    <div class="col-12">
+      <label for="direccion" class="form-label">Dirección</label>
+      <input [(ngModel)]="usuario.direccion" name="direccion" id="direccion" class="form-control" required />
+    </div>
+    <div class="col-md-6">
+      <label for="emailRegistro" class="form-label">Email</label>
+      <input [(ngModel)]="usuario.email" name="email" id="emailRegistro" type="email" class="form-control" required />
+    </div>
+    <div class="col-md-6">
+      <label for="passwordRegistro" class="form-label">Contraseña</label>
+      <input [(ngModel)]="usuario.password" name="password" id="passwordRegistro" type="password" class="form-control" required />
+    </div>
+    <div class="col-12 d-grid">
+      <button type="submit" class="btn btn-primary">Registrarse</button>
+    </div>
+    <div *ngIf="mensaje" class="alert alert-info mt-3">{{ mensaje }}</div>
+  </form>
+</div>
