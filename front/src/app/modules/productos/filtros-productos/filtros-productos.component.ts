@@ -16,6 +16,7 @@ export class FiltrosProductosComponent implements OnInit {
     clasificacion: string;
     precioMin: number | null;
     precioMax: number | null;
+    textoBusqueda: string;
   }>();
 
 
@@ -26,25 +27,32 @@ export class FiltrosProductosComponent implements OnInit {
       this.clasificacionSeleccionada = filtros.clasificacion || '';
       this.precioMin = filtros.precioMin ?? null;
       this.precioMax = filtros.precioMax ?? null;
+      this.textoBusqueda = filtros.textoBusqueda || '';
     }
   }
 
   clasificacionSeleccionada: string = '';
   precioMin: number | null = null;
   precioMax: number | null = null;
+  textoBusqueda: string = '';
 
-  aplicarFiltros() {
-    this.filtrosAplicados.emit({
+   aplicarFiltros() {
+    const filtros = {
       clasificacion: this.clasificacionSeleccionada,
       precioMin: this.precioMin,
-      precioMax: this.precioMax
-    });
+      precioMax: this.precioMax,
+      textoBusqueda: this.textoBusqueda
+    };
+
+    localStorage.setItem('filtrosProductos', JSON.stringify(filtros));
+    this.filtrosAplicados.emit(filtros);
   }
 
   limpiarFiltros() {
     this.clasificacionSeleccionada = '';
     this.precioMin = null;
     this.precioMax = null;
+    this.textoBusqueda = '';
     localStorage.removeItem('filtrosProductos');
     this.aplicarFiltros();
   }

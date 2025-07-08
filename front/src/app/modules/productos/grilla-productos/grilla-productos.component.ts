@@ -54,6 +54,7 @@ export class GrillaProductosComponent implements OnInit, OnDestroy {
     clasificacion: string;
     precioMin: number | null;
     precioMax: number | null;
+    textoBusqueda: string;
   }) {
     const todos = this.productos();
 
@@ -61,7 +62,8 @@ export class GrillaProductosComponent implements OnInit, OnDestroy {
       const coincideClasificacion = !filtros.clasificacion || producto.clasificacion === filtros.clasificacion;
       const coincidePrecioMin = filtros.precioMin == null || producto.precio >= filtros.precioMin;
       const coincidePrecioMax = filtros.precioMax == null || producto.precio <= filtros.precioMax;
-      return coincideClasificacion && coincidePrecioMin && coincidePrecioMax;
+      const coincideTexto = !filtros.textoBusqueda || producto.descripcion.toLowerCase().includes(filtros.textoBusqueda.toLowerCase());
+      return coincideClasificacion && coincidePrecioMin && coincidePrecioMax &&coincideTexto;
     });
 
     localStorage.setItem('filtrosProductos', JSON.stringify(filtros));
