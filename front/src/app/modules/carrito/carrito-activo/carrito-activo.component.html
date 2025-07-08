@@ -1,40 +1,51 @@
-<div class="card p-3 shadow-sm">
-  <h4 *ngIf="mostrarAcciones()" class="mb-4">Carrito actual:</h4>
-  <h4 *ngIf="!mostrarAcciones()" class="mb-4">Pedido: #{{ carrito().id }}</h4>
+<div class="card p-3 shadow-sm position-relative">
+
+  <!-- Botón de volver integrado en la esquina superior izquierda -->
+  <a *ngIf="!mostrarAcciones()"
+    href="javascript:history.back()" 
+    class="btn btn-outline-secondary position-absolute top-0 start-0 mt-2 ms-2 d-flex align-items-center gap-2 shadow-sm"
+    style="z-index: 10;"
+    title="Volver">
+    <i class="bi bi-arrow-left"></i> Volver
+  </a>
+
+  <h4 *ngIf="mostrarAcciones()" class="mb-4 mt-5">Carrito actual:</h4>
+  <h4 *ngIf="!mostrarAcciones()" class="mb-4 mt-5">Pedido: #{{ carrito().id }}</h4>
   <h6 *ngIf="!mostrarAcciones()" class="mb-4">{{carrito().creadoEn | date:'dd-MM-yyyy'}}</h6>
 
-<div *ngIf="carrito().items.length > 0; else sinProductos">
-  <app-carrito-item-activo
-    *ngFor="let item of carrito().items; let i = index"
-    [item]="item"
-    [index]="i"
-    [aumentarCantidad]="aumentarCantidad.bind(this)"
-    [disminuirCantidad]="disminuirCantidad.bind(this)"
-    [eliminarItem]="eliminarItem.bind(this)"
-    [mostrarAccionesEnHijo]="mostrarAcciones()"
-  ></app-carrito-item-activo>
-</div>
+  <div *ngIf="carrito().items.length > 0; else sinProductos">
+    <app-carrito-item-activo
+      *ngFor="let item of carrito().items; let i = index"
+      [item]="item"
+      [index]="i"
+      [aumentarCantidad]="aumentarCantidad.bind(this)"
+      [disminuirCantidad]="disminuirCantidad.bind(this)"
+      [eliminarItem]="eliminarItem.bind(this)"
+      [mostrarAccionesEnHijo]="mostrarAcciones()"
+    ></app-carrito-item-activo>
+  </div>
 
-<ng-template #sinProductos>
-  <h5 class="alert alert-warning">No hay productos en el carrito.</h5>
-</ng-template>
+  <ng-template #sinProductos>
+    <h5 class="alert alert-warning">No hay productos en el carrito.</h5>
+  </ng-template>
 
-    <div class="fila-final d-flex flex-column flex-md-row  mt-4">
-      <div class="fw-bold fs-5 text-md-start text-center mb-3 mb-md-0">
-        Total: ${{ carrito().total | number:'1.2-2' }}
-      </div>
-
-      <div *ngIf="mostrarAcciones()" class="text-md-end text-center">
-        <button (click)="terminarCompra()" class="btn btn-success d-inline-flex align-items-center">
-          <i class="bi bi-cart me-2"></i> Comprar
-        </button>
-      </div>
+  <div class="fila-final d-flex flex-column flex-md-row  mt-4">
+    <div class="fw-bold fs-5 text-md-start text-center mb-3 mb-md-0">
+      Total: ${{ carrito().total | number:'1.2-2' }}
     </div>
+
+    <div *ngIf="mostrarAcciones()" class="text-md-end text-center">
+      <button (click)="terminarCompra()" class="btn btn-success d-inline-flex align-items-center">
+        <i class="bi bi-cart me-2"></i> Comprar
+      </button>
+    </div>
+  </div>
 
   <ng-template #carritoVacio>
     <p class="text-center text-muted">El carrito está vacío.</p>
   </ng-template>
 </div>
+
 <div *ngIf="msjExito()" class="alert alert-success mt-2 msj-exito">
   {{ msjExito() }}
 </div>
