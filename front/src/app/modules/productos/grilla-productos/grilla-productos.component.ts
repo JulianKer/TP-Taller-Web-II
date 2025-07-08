@@ -32,6 +32,15 @@ export class GrillaProductosComponent implements OnInit, OnDestroy {
       next: (data) => {
         this.productos.set(data);
         this.productosFiltrados.set(data);
+        
+        const filtrosGuardados = localStorage.getItem('filtrosProductos');
+        if (filtrosGuardados) {
+          const filtros = JSON.parse(filtrosGuardados); //lo parseo a json pq puse q el aplicar fitlros recibe un json con 3 propiedades como el momo jaja
+          this.aplicarFiltros(filtros);
+        } else {
+          this.productosFiltrados.set(data);
+        }
+
       },
       error: (err) => {
         console.error('Error al obtener productos:', err);
@@ -55,6 +64,7 @@ export class GrillaProductosComponent implements OnInit, OnDestroy {
       return coincideClasificacion && coincidePrecioMin && coincidePrecioMax;
     });
 
+    localStorage.setItem('filtrosProductos', JSON.stringify(filtros));
     this.productosFiltrados.set(filtrados);
   }
 
