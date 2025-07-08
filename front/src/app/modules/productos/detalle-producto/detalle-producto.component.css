@@ -18,3 +18,13 @@
   top: 70px;
   right: 50px;
 }
+
+
+.bg-carrito {
+  background-color: #bd3333 !important;
+  border: none;
+}
+
+.bg-carrito:hover {
+  background-color: #d44f4f !important;
+}

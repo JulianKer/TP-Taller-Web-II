@@ -2,4 +2,18 @@ nav{
     width: 100%;
     z-index: 10;
     border-bottom: 5px solid rgb(189, 0, 0);
+    background-color: #212529 !important;
+    color: #fff !important;
+}
+
+.text-pink {
+  color: #fff !important;
+}
+
+.bg-carrito {
+  background-color: #bd3333 !important;
+}
+
+.bg-carrito:hover {
+  background-color: #d44f4f !important;
 }

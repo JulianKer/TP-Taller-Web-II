@@ -1,42 +1,50 @@
-<nav class="navbar navbar-expand-lg px-4" style="background-color: #212529;">
+
+
+
+<nav class="navbar navbar-expand-lg shadow-sm px-4 py-3">
   <div class="container-fluid">
 
-    <a class="navbar-brand d-flex align-items-center text-white" [routerLink]="['/inicio']">
-      <i class="bi bi-box-seam me-2"></i> Merch-F1
-    </a>
+   <a class="navbar-brand d-flex align-items-center text-white" [routerLink]="['/inicio']">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/512px-F1.svg.png?20220216140938" 
+       alt="Logo F1" 
+       width="40" 
+       class="me-2" />
+  Merch-F1
+</a>
 
-    <button class="navbar-toggler text-white border-white" type="button" data-bs-toggle="collapse"
-      data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
-      aria-label="Toggle navigation">
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
-      <ul class="navbar-nav mb-2 mb-lg-0">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+      <ul class="navbar-nav align-items-center gap-3">
         <li class="nav-item">
-          <a class="nav-link text-white" [routerLink]="['/inicio']">Inicio</a>
+          <a class="nav-link text-pink d-flex align-items-center" [routerLink]="['/inicio']">
+            <i class="bi bi-house-door me-1"></i> Inicio
+          </a>
+        </li>
+       <li class="nav-item">
+        <a class="nav-link text-pink d-flex align-items-center" [routerLink]="['/productos']">
+          <i class="bi bi-box-seam me-1"></i> Productos
+        </a>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link active bg-carrito text-pink rounded px-3 py-1 d-flex align-items-center" 
+             [routerLink]="['/carrito']">
+            <i class="bi bi-cart me-1"></i> Carrito
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" [routerLink]="['/productos']">Productos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" [routerLink]="['/carrito']">Carrito</a>
+          <a class="nav-link text-pink d-flex align-items-center" [routerLink]="['/perfil']">
+            <i class="bi bi-person me-1"></i> {{usuarioNombre}}
+          </a>
         </li>
       </ul>
     </div>
 
-    <div class="d-flex align-items-center gap-4">
-
-      <a class="text-white text-decoration-none d-flex align-items-center" [routerLink]="['/perfil']">
-        <span class="me-2">{{ usuarioNombre }}</span>
-        <i class="bi bi-person-circle fs-4"></i>
-      </a>
-
-      <a class="text-white text-decoration-none d-flex align-items-center" style="cursor: pointer;"
-         (click)="cerrarSesion()"
-         title="Cerrar sesión">
-        <i class="bi bi-box-arrow-right fs-4"></i>
-      </a>
-    </div>
   </div>
 </nav>
+

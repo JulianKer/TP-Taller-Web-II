@@ -1,3 +1,10 @@
 .card{
     display: flex !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 0px 12px rgba(0, 0, 0, 0.2) !important;
+  transform: translateX(10px);
+  background-color: rgba(0, 0, 0, 0.03);
 }
