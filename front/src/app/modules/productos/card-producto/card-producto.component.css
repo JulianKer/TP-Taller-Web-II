@@ -60,11 +60,11 @@
 .boton-agregar {
   border-radius: 0;
   transition: transform 0.2s ease-in-out;
-  background-color: red;
+  background-color: #DC3545;
 }
 
 .boton-agregar:hover {
-  background-color: rgb(219, 0, 0);
+  background-color: #BB2D3B;
 }
 
 .msj-exito{

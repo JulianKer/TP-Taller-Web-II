@@ -1,0 +1,43 @@
+<div class="container mb-4">
+  <div class="row g-3 align-items-end">
+    
+    <div class="col-md-4">
+      <label for="select-clasificacion" class="form-label">Clasificación</label>
+      <select
+        id="select-clasificacion"
+        class="form-select"
+        [(ngModel)]="clasificacionSeleccionada"
+        (change)="aplicarFiltros()">
+        <option value="">Todas</option>
+        <option *ngFor="let clasificacion of clasificaciones" [value]="clasificacion">{{ clasificacion }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label for="input-precio-min" class="form-label">Precio mínimo</label>
+      <input
+        id="input-precio-min"
+        type="number"
+        class="form-control"
+        [(ngModel)]="precioMin"
+        (keyup)="aplicarFiltros()">
+    </div>
+
+    <div class="col-md-3">
+      <label for="input-precio-max" class="form-label">Precio máximo</label>
+      <input
+        id="input-precio-max"
+        type="number"
+        class="form-control"
+        [(ngModel)]="precioMax"
+        (keyup)="aplicarFiltros()">
+    </div>
+
+    <div class="col-md-2 d-grid">
+      <button class="btn btn-danger" (click)="limpiarFiltros()">
+            <i class="bi bi-funnel me-2"></i> Limpiar filtros
+      </button>
+    </div>
+
+  </div>
+</div>
