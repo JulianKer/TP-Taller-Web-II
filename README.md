@@ -1,5 +1,7 @@
-# Proyecto final: Merch-F1
+# Proyecto final: ![Merch-F1](https://img.shields.io/badge/Merch--F1-FF1801?style=for-the-badge&logo=formula1&logoColor=white)
+ 
 
+### Stack:
 ![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Node](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
@@ -80,3 +82,10 @@ ng serve -o
 ```bash
 npm run dev
 ```
+
+
+ | Rol                                      | Nombre           | GitHub                                      |
+|:----------------------------------------|:------------------|:---------------------------------------------|
+| ![Developer](https://img.shields.io/badge/Developer-2088FF?style=for-the-badge&logo=dev.to&logoColor=white) | 👨🏻‍💻 Julián Schmuker   | [JulianKer](https://github.com/JulianKer)   |
+| ![Developer](https://img.shields.io/badge/Developer-2088FF?style=for-the-badge&logo=dev.to&logoColor=white) | 👨🏻‍💻 Germán Schmuker   | [German](https://github.com/GermanSchmuker) |
+| ![Developer](https://img.shields.io/badge/Developer-2088FF?style=for-the-badge&logo=dev.to&logoColor=white) | 👨🏻‍💻 Tomás Nania       | [TNania04](https://github.com/TNania04)     | 
