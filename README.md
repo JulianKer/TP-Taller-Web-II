@@ -99,7 +99,6 @@ _________________________________________________________
 
 ![Rol](https://img.shields.io/badge/Rol-000?style=for-the-badge&logo=account&logoColor=white)
 ![Usuario](https://img.shields.io/badge/Usuario-DD0031?style=for-the-badge&logo=account&logoColor=white)
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/512px-F1.svg.png?20220216140938" alt="CRYPTO" width="80" />
 
 | Sección       | Imagen       |
 |-----------------|-----------------|
