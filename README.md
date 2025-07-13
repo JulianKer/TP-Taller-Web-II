@@ -89,3 +89,23 @@ npm run dev
 | ![Developer](https://img.shields.io/badge/Developer-2088FF?style=for-the-badge&logo=dev.to&logoColor=white) | 👨🏻‍💻 Julián Schmuker   | [JulianKer](https://github.com/JulianKer)   |
 | ![Developer](https://img.shields.io/badge/Developer-2088FF?style=for-the-badge&logo=dev.to&logoColor=white) | 👨🏻‍💻 Germán Schmuker   | [German](https://github.com/GermanSchmuker) |
 | ![Developer](https://img.shields.io/badge/Developer-2088FF?style=for-the-badge&logo=dev.to&logoColor=white) | 👨🏻‍💻 Tomás Nania       | [TNania04](https://github.com/TNania04)     | 
+
+_________________________________________________________
+
+# Preview:
+
+* ![Usuario](https://img.shields.io/badge/Usuario-DD0031?style=for-the-badge&logo=hackthebox&logoColor=white)
+
+
+| Sección       | Imagen       |
+|-----------------|-----------------|
+| Inicio de sesión y Registro | <img src="https://github.com/JulianKer/TP-Taller-Web-II/blob/main/front/public/img/preview/1.png" alt="f1" width="700" style="vertical-align:middle;"/>|
+| Inicio | <img src="https://github.com/JulianKer/TP-Taller-Web-II/blob/main/front/public/img/preview/2.png" alt="f1" width="700" style="vertical-align:middle;"/>|
+| Perfil | <img src="https://github.com/JulianKer/TP-Taller-Web-II/blob/main/front/public/img/preview/3.png" alt="f1" width="700" style="vertical-align:middle;"/>|
+| Productos: todos | <img src="https://github.com/JulianKer/TP-Taller-Web-II/blob/main/front/public/img/preview/4.png" alt="f1" width="700" style="vertical-align:middle;"/>|
+| Productos: filtrados (se mantienen)| <img src="https://github.com/JulianKer/TP-Taller-Web-II/blob/main/front/public/img/preview/5.png" alt="f1" width="700" style="vertical-align:middle;"/>|
+| Detalle de producto | <img src="https://github.com/JulianKer/TP-Taller-Web-II/blob/main/front/public/img/preview/6.png" alt="f1" width="700" style="vertical-align:middle;"/>|
+| Carrito Actual | <img src="https://github.com/JulianKer/TP-Taller-Web-II/blob/main/front/public/img/preview/7.png" alt="f1" width="700" style="vertical-align:middle;"/>|
+| Historial de carritos/pedidos | <img src="https://github.com/JulianKer/TP-Taller-Web-II/blob/main/front/public/img/preview/8.png" alt="f1" width="700" style="vertical-align:middle;"/>|
+| Detalle de carrito/pedido pasado | <img src="https://github.com/JulianKer/TP-Taller-Web-II/blob/main/front/public/img/preview/9.png" alt="f1" width="700" style="vertical-align:middle;"/>|
+
