@@ -109,3 +109,8 @@ _________________________________________________________
 | Historial de carritos/pedidos | <img src="https://github.com/JulianKer/TP-Taller-Web-II/blob/main/front/public/img/preview/8.png" alt="f1" width="700" style="vertical-align:middle;"/>|
 | Detalle de carrito/pedido pasado | <img src="https://github.com/JulianKer/TP-Taller-Web-II/blob/main/front/public/img/preview/9.png" alt="f1" width="700" style="vertical-align:middle;"/>|
 
+
+______________________________________________
+
+![Readme by:](https://img.shields.io/badge/Readme%20by:-FF1801?style=for-the-badge&logo=account&logoColor=white)
+[![JulianKer](https://img.shields.io/badge/JulianKer-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JulianKer)
