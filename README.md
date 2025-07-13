@@ -1,4 +1,4 @@
-# Proyecto final: ![Merch-F1](https://img.shields.io/badge/Merch--F1-FF1801?style=for-the-badge&logo=formula1&logoColor=white)
+#  ![Merch](https://img.shields.io/badge/Merch-FF1801?style=for-the-badge&logo=formula1&logoColor=white) <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/512px-F1.svg.png?20220216140938" alt="CRYPTO" width="100" />
  
 
 ### Stack:
@@ -93,9 +93,13 @@ npm run dev
 _________________________________________________________
 
 # Preview:
+<!--
+* ![Usuario](https://img.shields.io/badge/Usuario-DD0031?style=for-the-badge&logo=hackthebox&logoColor=white)-->
 
-* ![Usuario](https://img.shields.io/badge/Usuario-DD0031?style=for-the-badge&logo=hackthebox&logoColor=white)
 
+![Rol](https://img.shields.io/badge/Rol-000?style=for-the-badge&logo=account&logoColor=white)
+![Usuario](https://img.shields.io/badge/Usuario-DD0031?style=for-the-badge&logo=account&logoColor=white)
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/F1.svg/512px-F1.svg.png?20220216140938" alt="CRYPTO" width="80" />
 
 | Sección       | Imagen       |
 |-----------------|-----------------|
